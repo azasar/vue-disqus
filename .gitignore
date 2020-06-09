@@ -1,3 +1,4 @@
 node_modules/
 demo/vue-disqus.js
 dist
+.idea

@@ -131,9 +131,17 @@ export default {
     },
 
     setPageConfig (disqusConfig) {
+      const location = window.location;
+      let identifier = (this.$route.path || location.pathname);
+      let url = document.baseURI;
+
+      // automatically load different comments for pages with hashtags
+      if (location.hash) {
+        identifier = url = location.origin + '/#!' + location.pathname + location.hash;
+      }
       const defaultConfig = {
-        url: document.baseURI,
-        identifier: (this.$route.path || window.location.pathname)
+        identifier,
+        url,
       }
 
       Object.assign(disqusConfig.page, defaultConfig)
